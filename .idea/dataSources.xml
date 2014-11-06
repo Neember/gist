@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="4285558941">
+    <data-source source="LOCAL" name="Rails gist: development" uuid="134deef6-0eb7-405e-a8a5-519a9e5dd0aa">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/gist_development</jdbc-url>
+      <user-name>root</user-name>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails gist: test" uuid="41ddf828-169c-46ac-8180-7554695e6b01">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/gist_test</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
