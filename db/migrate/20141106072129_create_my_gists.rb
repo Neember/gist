@@ -3,7 +3,7 @@ class CreateMyGists < ActiveRecord::Migration
     create_table :my_gists do |t|
       t.string  :title
       t.text    :content
-      t.integer :status
+      t.integer :status, default: 1
       t.timestamps
     end
   end

@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20141106072129) do
   create_table "my_gists", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "status"
+    t.integer  "status",     default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
