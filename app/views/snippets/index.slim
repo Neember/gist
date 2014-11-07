@@ -1,0 +1,18 @@
+#snippets-index-container
+  h2 Snippet listing
+  table.table.table-striped
+    thead
+      tr
+        th Title
+        th Date
+        th 
+        th
+    tbody
+      - @snippets.each do |snippet|
+        tr
+          td= snippet.title
+          td= snippet.created_at
+          td
+            = link_to 'Detail', snippet_path(snippet), class: 'btn btn-default'
+          td
+            = link_to 'Edit', edit_snippet_path(snippet), class: 'btn btn-default'

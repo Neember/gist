@@ -95,4 +95,18 @@ describe SnippetsController do
       expect(response).to render_template :show
     end
   end
+
+  describe 'GET #index' do
+    def do_request
+      get :index
+    end
+
+    let!(:snippets) { create_list(:snippet, 2) }
+
+    it 'assigns an array of snippets and renders :index view' do 
+      do_request 
+      expect(assigns(:snippets).size).to eq 2
+      expect(response).to render_template :index
+    end
+  end
 end
