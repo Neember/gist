@@ -2,9 +2,4 @@
   nav.navbar.navbar-default
     .container-fluid
       .nav.navbar-nav.navbar-right
-        - if current_user
-          li
-            a= "Welcome #{current_user.nickname}"
-          li= link_to "Sign out", signout_path
-        - else
-          li= link_to "Sign in with Github", "/auth/github"
+        li Pending
