@@ -13,10 +13,18 @@ class SnippetsController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @snippet = Snippet.find(snippet_id)
+  end
 
   private
 
   def create_params
     params.require(:snippet).permit(:title, :content)
+  end
+
+  def snippet_id
+    params.require(:id)
   end
 end
