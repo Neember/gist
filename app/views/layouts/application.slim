@@ -9,4 +9,6 @@ html
       p.alert.alert-info = notice
     - if alert.present?
       p.alert.alert-info = alert
-    = yield
+      
+    .container
+      = yield
