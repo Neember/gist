@@ -1,0 +1,7 @@
+.container
+  .row
+    h1 Create a gist
+    = simple_form_for @my_gist do |f|
+      = f.input :title
+      = f.input :content
+      = f.button :submit
