@@ -29,8 +29,10 @@ gem 'rails_admin'
 gem 'slim'
 gem 'simple_form', '~> 3.1.0.rc1'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'omniauth-github'
 
 group :development, :test do
+  gem 'dotenv-rails'
 	gem 'factory_girl_rails'
 	gem 'shoulda'
 	gem 'capybara'
@@ -39,6 +41,8 @@ end
 
 group :development do
   gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Use ActiveModel has_secure_password
