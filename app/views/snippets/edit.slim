@@ -1,0 +1,6 @@
+#snippets-edit-container
+  h1 Edit snippet
+  = simple_form_for @snippet do |f|
+    = f.input :title
+    = f.input :content
+    = f.button :submit

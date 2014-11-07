@@ -8,7 +8,7 @@ class SnippetsController < ApplicationController
 
     if @snippet.save
       flash[:notice] = 'Snippet created successfully.'
-      redirect_to new_snippet_url
+      redirect_to edit_snippet_url(@snippet)
     else
       render :new
     end
@@ -18,10 +18,23 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.find(snippet_id)
   end
 
+  def update
+    @snippet = Snippet.find(snippet_id)
+    if @snippet.update_attributes(update_params)
+      redirect_to snippet_url(@snippet), notice: "Snippet updated successfully."
+    else
+      render :edit
+    end
+  end
+
   private
 
   def create_params
     params.require(:snippet).permit(:title, :content)
+  end
+
+  def update_params
+    create_params
   end
 
   def snippet_id
