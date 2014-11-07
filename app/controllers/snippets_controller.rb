@@ -1,4 +1,9 @@
 class SnippetsController < ApplicationController
+  def show
+    @snippet = Snippet.find(snippet_id)
+    render :show
+  end
+
   def new
     @snippet = Snippet.new
   end
