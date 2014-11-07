@@ -81,4 +81,18 @@ describe SnippetsController do
       end
     end
   end
+
+  describe 'GET #show' do 
+    def do_request 
+      get :show, id: snippet.id 
+    end
+
+    let!(:snippet)   { create(:snippet) }
+
+    it 'assigns snippet to @snippet and renders :show view' do 
+      do_request 
+      expect(assigns(:snippet)).to match snippet 
+      expect(response).to render_template :show
+    end
+  end
 end
