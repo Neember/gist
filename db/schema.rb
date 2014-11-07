@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106072129) do
+ActiveRecord::Schema.define(version: 20141107024830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "my_gists", force: true do |t|
+  create_table "snippets", force: true do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "status",     default: 1
