@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe MyGistsController do 
+describe SnippetsController do 
   describe 'GET #new' do 
     def do_request 
       get :new
@@ -13,21 +13,21 @@ describe MyGistsController do
   end
   describe 'POST #create' do
     def do_request
-      post :create, my_gist: gist.attributes
+      post :create, snippet: snippet.attributes
     end
 
-    let!(:gist) { build(:my_gist) }
+    let!(:snippet) { build(:snippet) }
 
     context 'success' do
-      it 'creates a gist' do
-        expect{do_request}.to change(MyGist, :count).by(1)
-        expect(response).to redirect_to new_my_gist_url
+      it 'creates a snippet' do
+        expect{do_request}.to change(Snippet, :count).by(1)
+        expect(response).to redirect_to new_snippet_url
       end
     end
 
     context 'fail' do 
       it 'renders :new view' do 
-        gist.title = nil
+        snippet.title = nil
         do_request
         expect(response).to render_template :new
       end
