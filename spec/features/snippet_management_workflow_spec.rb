@@ -21,6 +21,16 @@ describe 'Update a snippet' do
   end
 end
 
+describe 'Destroy a snippet' do
+  let!(:snippet) { create(:snippet) }
+
+  it 'deletes a snippet' do 
+    visit snippets_url
+    click_on 'Delete'
+    expect(page).to have_content 'Snippet deleted successfully.'
+  end
+end
+
 describe 'Show snippet listing' do
   let!(:setup_rails)    { create(:snippet) }
   let!(:paperclip)      { create(:snippet) }

@@ -36,6 +36,14 @@ class SnippetsController < ApplicationController
     end
   end
 
+  def destroy
+    @snippet = Snippet.find(snippet_id)
+
+    flash[:notice] = "Snippet deleted successfully." if @snippet.destroy
+
+    redirect_to snippets_url
+  end
+
   private
 
   def create_params

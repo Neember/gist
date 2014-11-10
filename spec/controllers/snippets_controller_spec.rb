@@ -109,4 +109,17 @@ describe SnippetsController do
       expect(response).to render_template :index
     end
   end
+
+  describe 'DELETE #destroy' do
+    def do_request 
+      delete :destroy, id: snippet.id
+    end
+
+    let!(:snippet) { create(:snippet) }
+
+    it 'deletes a snippet' do
+      expect{do_request}.to change(Snippet, :count).by(-1)
+      expect(response).to redirect_to snippets_url 
+    end
+  end
 end
