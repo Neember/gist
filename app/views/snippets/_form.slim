@@ -2,4 +2,5 @@
   = simple_form_for @snippet do |f|
     = f.input :title
     = f.input :content
+    = f.input :status, :as => :select, :collection => Snippet.statuses.keys.to_a
     = f.button :submit

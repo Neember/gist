@@ -47,7 +47,7 @@ class SnippetsController < ApplicationController
   private
 
   def create_params
-    params.require(:snippet).permit(:title, :content)
+    params.require(:snippet).permit(:title, :content, :status)
   end
 
   def update_params
