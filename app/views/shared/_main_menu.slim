@@ -3,7 +3,7 @@
     .container-fluid
       ul.nav.navbar-nav
         li.dropdown
-          a.dropdown-toggle data-toggle="dropdown"
+          a.dropdown-toggle href= '#' data-toggle="dropdown"
             | Gist Management
             span.caret
               ul.dropdown-menu role="menu"
@@ -13,7 +13,7 @@
       ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             li.dropdown
-              a.dropdown-toggle data-toggle="dropdown"
+              a.dropdown-toggle href= '#' data-toggle="dropdown"
                 | Wellcome #{current_user.username} 
                 span.caret
                 ul.dropdown-menu role="menu"
