@@ -1,5 +1,9 @@
 .shared-login-container
   nav.navbar.navbar-default
     .container-fluid
-      .nav.navbar-nav.navbar-right
-        li Pending
+      ul.nav.navbar-nav.navbar-right
+        li
+          - if user_signed_in?
+            = link_to "Sign out", destroy_user_session_url, method: :delete
+          - else
+            = link_to 'Sign in with Github', '/users/auth/github'

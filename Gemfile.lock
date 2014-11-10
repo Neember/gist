@@ -242,6 +242,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
+  omniauth
   omniauth-github
   pg
   rails (= 4.1.7)

@@ -5,4 +5,8 @@ Rails.application.routes.draw do
 
   resources :snippets, only: [:new, :create, :edit, :update, :show, :index]
   root 'snippets#index'
+
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+
+  match '/' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 end
