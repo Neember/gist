@@ -23,7 +23,7 @@ describe SnippetsController do
       it 'creates a snippet' do
         expect{do_request}.to change(Snippet, :count).by(1)
 
-        expect(response).to redirect_to edit_snippet_url(assigns(:snippet))
+        expect(response).to redirect_to snippets_url
       end
     end
 

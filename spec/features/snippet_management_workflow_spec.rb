@@ -27,6 +27,8 @@ describe 'Show snippet listing' do
 
   it 'displays a list of snippets' do
     visit snippets_url
+    expect(page).to have_link('Gist Listing', { href: snippets_path })
+    expect(page).to have_link('Create a gist', { href: new_snippet_path })
     expect(page).to have_content setup_rails.title
     expect(page).to have_content paperclip.title
     expect(page).to have_link('Edit',   { href: edit_snippet_path(setup_rails) })

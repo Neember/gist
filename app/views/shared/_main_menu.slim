@@ -1,0 +1,22 @@
+.shared-main-menu-container
+  nav.navbar.navbar-default
+    .container-fluid
+      ul.nav.navbar-nav
+        li.dropdown
+          a.dropdown-toggle data-toggle="dropdown"
+            | Gist Management
+            span.caret
+              ul.dropdown-menu role="menu"
+                li = link_to "Gist Listing", snippets_path
+                li = link_to "Create a gist", new_snippet_path
+        - if user_signed_in?
+      ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            li.dropdown
+              a.dropdown-toggle data-toggle="dropdown"
+                | Wellcome #{current_user.username} 
+                span.caret
+                ul.dropdown-menu role="menu"
+                  li = link_to "Sign out", destroy_user_session_path, method: :delete
+          - else
+            li = link_to 'Sign in with Github', '/users/auth/github'

@@ -1,4 +1,4 @@
 #snippets-show-container
   h1 = @snippet.title
   .content
-    = @snippet.content
+    = markdown(@snippet.content) 
