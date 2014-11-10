@@ -2,8 +2,15 @@
   nav.navbar.navbar-default
     .container-fluid
       ul.nav.navbar-nav.navbar-right
-        li
           - if user_signed_in?
-            = link_to "Sign out", destroy_user_session_url, method: :delete
+            li.dropdown
+              a.dropdown-toggle data-toggle="dropdown"
+                | Wellcome #{current_user.username} 
+                span.caret
+                ul.dropdown-menu role="menu"
+                  li
+                    a
+                    = link_to "Sign out", destroy_user_session_url, method: :delete
           - else
-            = link_to 'Sign in with Github', '/users/auth/github'
+            li
+              = link_to 'Sign in with Github', '/users/auth/github'
