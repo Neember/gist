@@ -34,6 +34,10 @@ class SnippetsController < ApplicationController
 
   def update
     @snippet = Snippet.find(snippet_id)
+    unless @snippet.belongs_to?(current_user)
+      return redirect_to snippets_url, notice: 'You have not authority to update this snippet'
+    end
+
     if @snippet.update_attributes(update_params)
       redirect_to snippet_url(@snippet), notice: "Snippet updated successfully."
     else

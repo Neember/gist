@@ -75,7 +75,6 @@ describe SnippetsController do
   describe 'PUT #update' do
     let!(:snippet)      { create(:snippet) }
     let(:update_params) { attributes_for(:snippet, title: new_title) }
-    let!(:user)         { create(:user) }
 
     before { sign_in user } 
 
@@ -83,25 +82,38 @@ describe SnippetsController do
       put :update, { id: snippet.id, snippet: update_params }
     end
 
-    context 'with valid attributes' do
-      let(:new_title) { 'New Title' }
+    context 'Snippet belong to user' do
+      let!(:user) { snippet.user }
+      context 'with valid attributes' do
+        let(:new_title) { 'New Title' }
 
-      it "changes @snippet's attributes" do
-        do_request
-        snippet.reload
-        expect(snippet.title).to eq new_title
-        expect(response).to redirect_to snippet_url(snippet)
+        it "changes @snippet's attributes" do
+          do_request
+          snippet.reload
+          expect(snippet.title).to eq new_title
+          expect(response).to redirect_to snippet_url(snippet)
+        end
+      end
+
+      context 'with invalid attributes' do
+        let(:new_title) { nil }
+
+        it "does not change @snippet's attributes" do
+          do_request
+          snippet.reload
+          expect(snippet.title).to_not eq new_title
+          expect(response).to render_template :edit
+        end
       end
     end
 
-    context 'with invalid attributes' do
-      let(:new_title) { nil }
+    context 'Snippet does not belong user' do
+      let(:new_title) { 'New Title' }
+      let!(:user)     { create(:user) }
 
-      it "does not change @snippet's attributes" do
+      it 'redirect to snippet listing page' do
         do_request
-        snippet.reload
-        expect(snippet.title).to_not eq new_title
-        expect(response).to render_template :edit
+        expect(response).to redirect_to snippets_url
       end
     end
   end
