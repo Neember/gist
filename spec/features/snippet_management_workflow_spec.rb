@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 describe 'Create a snippet' do 
+  let!(:user)  { create(:user) }
+
   it 'allows user to create a snippet' do 
+    login_as(user, :scope => :user)
     visit new_snippet_url
+    
     fill_in 'Title', with: 'Snippet 1'
     fill_in 'Content', with: 'Snippet 1 content'
     click_on 'Create Snippet'
@@ -14,6 +18,7 @@ describe 'Update a snippet' do
   let!(:snippet) { create(:snippet) }
 
   it 'allows user to update a snippet' do
+    login_as(snippet.user, :scope => :user)
     visit edit_snippet_url(snippet) 
     fill_in 'Title', with: 'New title'
     click_on 'Update Snippet'
@@ -25,6 +30,7 @@ describe 'Destroy a snippet' do
   let!(:snippet) { create(:snippet) }
 
   it 'deletes a snippet' do 
+    login_as(snippet.user, :scope => :user)
     visit snippets_url
     click_on 'Delete'
     expect(page).to have_content 'Snippet deleted successfully.'
@@ -37,7 +43,7 @@ describe 'Show snippet listing' do
 
   it 'displays a list of snippets' do
     visit snippets_url
-    expect(page).to have_link('Gist Listing', { href: snippets_path })
+    expect(page).to have_link('Gist Listing',  { href: snippets_path })
     expect(page).to have_link('Create a gist', { href: new_snippet_path })
     expect(page).to have_content setup_rails.title
     expect(page).to have_content paperclip.title
