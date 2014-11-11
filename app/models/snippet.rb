@@ -10,6 +10,7 @@ class Snippet < ActiveRecord::Base
   enum status: [ 'Personal', 'Share' ]
 
   def belongs_to?(user)
+    return false unless user.present?
     user_id == user.id
   end
 end
