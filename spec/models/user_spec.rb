@@ -2,12 +2,13 @@ require 'rails_helper'
 
 describe User do 
   describe '.find_for_oauth' do 
+    let!(:user) { create(:user) }
     let!(:auth) {
       {
         'provider' => 'github',
         'uid'      => '9523491',
         'info' => {
-          'email' => nil,
+          'email' => user.email,
           'image' => 'https://avatars.githubusercontent.com/u/9523491?v=3',
           'name'  => nil,
           'nickname'    => 'Johnytran',
@@ -22,7 +23,7 @@ describe User do
     }
 
     it 'returns a user' do
-      expect(User.find_for_oauth(auth).username).to eq auth['info']['nickname']
+      expect(User.find_for_oauth(auth).email).to eq user.email
     end
   end
 

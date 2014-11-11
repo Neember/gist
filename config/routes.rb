@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :snippets, only: [:new, :create, :edit, :update, :show, :index, :destroy]
   root 'snippets#index'
-
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', sessions: "sessions" }
+  devise_scope :user do
+    devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', sessions: "sessions" }
+  end
 end
