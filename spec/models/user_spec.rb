@@ -25,4 +25,8 @@ describe User do
       expect(User.find_for_oauth(auth).username).to eq auth['info']['nickname']
     end
   end
+
+  describe 'associations' do 
+    it { is_expected.to have_many :snippets }
+  end
 end
