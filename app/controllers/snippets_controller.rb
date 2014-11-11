@@ -18,8 +18,7 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.new(create_params)
 
     if @snippet.save
-      flash[:notice] = 'Snippet created successfully.'
-      redirect_to snippets_url
+      redirect_to snippets_url, notice: 'Snippet created successfully.'
     else
       render :new
     end
