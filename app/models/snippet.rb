@@ -8,4 +8,8 @@ class Snippet < ActiveRecord::Base
   validates :content, presence: true
 
   enum status: [ 'Personal', 'Share' ]
+
+  def belongs_to?(user)
+    user_id == user.id
+  end
 end
