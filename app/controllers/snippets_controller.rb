@@ -27,9 +27,8 @@ class SnippetsController < ApplicationController
 
   def edit
     @snippet = Snippet.find(snippet_id)
-    if @snippet.user_id != current_user.id
-      flash[:notice] = 'You have not authority to edit this snippet'
-      redirect_to snippets_url
+    unless @snippet.belongs_to?(current_user)
+      redirect_to snippets_url, notice: 'You have not authority to edit this snippet'
     end
   end
 
