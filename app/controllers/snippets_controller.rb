@@ -59,7 +59,7 @@ class SnippetsController < ApplicationController
   private
 
   def create_params
-    data = params.require(:snippet).permit(:title, :content, :status, :tag_ids)
+    data = params.require(:snippet).permit(:title, :content, :status, tag_ids: [])
     data[:user] = current_user
     data
   end
