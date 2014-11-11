@@ -152,13 +152,24 @@ describe SnippetsController do
     end
 
     let!(:snippet) { create(:snippet) }
-    let!(:user)    { create(:user) }
 
     before { sign_in user } 
-
-    it 'deletes a snippet' do
-      expect{do_request}.to change(Snippet, :count).by(-1)
-      expect(response).to redirect_to snippets_url 
+    
+    context 'Snippet belong to user' do
+      let!(:user) { snippet.user }
+      it 'deletes a snippet' do
+        expect{do_request}.to change(Snippet, :count).by(-1)
+        expect(response).to redirect_to snippets_url 
+      end
     end
+
+    context 'Snippet does not belong to user' do
+      let!(:user) { create(:user) }
+      it 'redirect to snippet listing' do
+        do_request
+        expect(response).to redirect_to snippets_url 
+      end
+    end
+    
   end
 end

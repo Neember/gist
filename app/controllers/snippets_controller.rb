@@ -47,6 +47,10 @@ class SnippetsController < ApplicationController
 
   def destroy
     @snippet = Snippet.find(snippet_id)
+    
+    unless @snippet.belongs_to?(current_user)
+      return redirect_to snippets_url, notice: 'You have not authority to delete this snippet'
+    end
 
     flash[:notice] = "Snippet deleted successfully." if @snippet.destroy
 
