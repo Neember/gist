@@ -24,9 +24,13 @@ class SnippetsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @snippet = Snippet.find(snippet_id)
+    if @snippet.user_id != current_user.id
+      flash[:notice] = 'You have not authority to edit this snippet'
+      redirect_to snippets_url
+    end
   end
 
   def update
@@ -49,7 +53,9 @@ class SnippetsController < ApplicationController
   private
 
   def create_params
-    params.require(:snippet).permit(:title, :content, :status, :tag_ids, :user_id)
+    data = params.require(:snippet).permit(:title, :content, :status, :tag_ids)
+    data[:user] = current_user
+    data
   end
 
   def update_params

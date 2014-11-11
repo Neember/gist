@@ -44,7 +44,6 @@ describe SnippetsController do
 
   describe 'GET #edit' do
     let!(:snippet)  { create(:snippet) }
-    let!(:user)     { create(:user) }
 
     before { sign_in user } 
 
@@ -52,11 +51,25 @@ describe SnippetsController do
       get :edit, id: snippet.id
     end
 
-    it 'renders :edit view' do
-      do_request
-      expect(assigns(:snippet)).to match snippet
-      expect(response).to render_template :edit
-    end 
+    context 'snippet belongs to current user' do 
+      let!(:user) { snippet.user }
+
+      it 'renders :edit view' do
+        do_request
+        expect(snippet.user_id).to eq user.id
+        expect(assigns(:snippet)).to match snippet
+        expect(response).to render_template :edit
+      end 
+    end
+
+    context 'snippet does not belong to current user' do 
+      let!(:user) { create(:user) }
+
+      it 'renders :edit view' do
+        do_request
+        expect(response).to redirect_to snippets_url
+      end 
+    end
   end
 
   describe 'PUT #update' do
