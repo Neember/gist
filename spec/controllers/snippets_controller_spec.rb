@@ -6,6 +6,10 @@ describe SnippetsController do
       get :new
     end
 
+    let!(:user) { create(:user) }
+
+    before { sign_in user }
+
     it 'renders the :new view' do 
       do_request
       expect(response).to render_template :new
@@ -13,7 +17,10 @@ describe SnippetsController do
   end
 
   describe 'POST #create' do
-    let!(:snippet) { build(:snippet) }
+    let!(:snippet)  { build(:snippet) }
+    let!(:user)     { create(:user) }
+
+    before { sign_in user }
 
     def do_request
       post :create, snippet: snippet.attributes
@@ -22,7 +29,6 @@ describe SnippetsController do
     context 'success' do
       it 'creates a snippet' do
         expect{do_request}.to change(Snippet, :count).by(1)
-
         expect(response).to redirect_to snippets_url
       end
     end
@@ -37,7 +43,10 @@ describe SnippetsController do
   end
 
   describe 'GET #edit' do
-    let!(:snippet) { create(:snippet) }
+    let!(:snippet)  { create(:snippet) }
+    let!(:user)     { create(:user) }
+
+    before { sign_in user } 
 
     def do_request 
       get :edit, id: snippet.id
@@ -51,9 +60,11 @@ describe SnippetsController do
   end
 
   describe 'PUT #update' do
-    let!(:snippet)   { create(:snippet) }
-   
+    let!(:snippet)      { create(:snippet) }
     let(:update_params) { attributes_for(:snippet, title: new_title) }
+    let!(:user)         { create(:user) }
+
+    before { sign_in user } 
 
     def do_request
       put :update, { id: snippet.id, snippet: update_params }
@@ -116,6 +127,9 @@ describe SnippetsController do
     end
 
     let!(:snippet) { create(:snippet) }
+    let!(:user)    { create(:user) }
+
+    before { sign_in user } 
 
     it 'deletes a snippet' do
       expect{do_request}.to change(Snippet, :count).by(-1)
