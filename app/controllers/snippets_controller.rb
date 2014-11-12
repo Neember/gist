@@ -1,8 +1,9 @@
 class SnippetsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
-  def index 
-    @snippets = Snippet.all 
+  def index  
+    @snippets = Snippet.all unless current_user
+    @snippets = Snippet.where(user: current_user) if current_user
   end
 
   def show
