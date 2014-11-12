@@ -1,42 +1,5 @@
 require 'rails_helper'
 
-describe 'Create a snippet' do 
-  let!(:user)  { create(:user) }
-
-  it 'allows user to create a snippet' do 
-    login_as(user, :scope => :user)
-    visit new_snippet_url
-    
-    fill_in 'Title', with: 'Snippet 1'
-    fill_in 'Content', with: 'Snippet 1 content'
-    click_on 'Create Snippet'
-    expect(page).to have_content 'Snippet created successfully.'
-  end
-end
-
-describe 'Update a snippet' do 
-  let!(:snippet) { create(:snippet) }
-
-  it 'allows user to update a snippet' do
-    login_as(snippet.user, :scope => :user)
-    visit edit_snippet_url(snippet) 
-    fill_in 'Title', with: 'New title'
-    click_on 'Update Snippet'
-    expect(page).to have_content 'Snippet updated successfully.'
-  end
-end
-
-describe 'Destroy a snippet' do
-  let!(:snippet) { create(:snippet) }
-
-  it 'deletes a snippet' do 
-    login_as(snippet.user, :scope => :user)
-    visit snippets_url
-    click_on 'Delete'
-    expect(page).to have_content 'Snippet deleted successfully.'
-  end
-end
-
 describe 'Show snippet listing' do
   let!(:setup_rails)    { create(:snippet) }
   let!(:paperclip)      { create(:snippet) }
