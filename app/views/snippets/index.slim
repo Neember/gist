@@ -1,5 +1,6 @@
 #snippets-index-container
   h2 Snippet listing
+
   table.table.table-striped
     thead
       tr
@@ -11,7 +12,7 @@
     tbody
       - @snippets.each do |snippet|
         tr
-          td= snippet.title
+          td = link_to snippet.title, snippet_path(snippet)
           td= snippet.created_at.strftime("%A, %d/%m/%Y")
           td
             = link_to 'Detail', snippet_path(snippet), class: 'btn btn-default'

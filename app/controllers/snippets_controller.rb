@@ -75,7 +75,7 @@ class SnippetsController < ApplicationController
       snippet: @snippet
     ).deliver
     
-    redirect_to snippet_url(@snippet)
+    redirect_to snippet_url(@snippet), notice: "Snippet was shared successfully to #{share_email}"
   end
 
   private

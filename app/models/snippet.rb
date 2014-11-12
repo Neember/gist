@@ -1,4 +1,6 @@
 class Snippet < ActiveRecord::Base
+  attr_accessor :email
+
   belongs_to :user
 
   has_many :tagables
@@ -7,7 +9,7 @@ class Snippet < ActiveRecord::Base
   validates :title,   presence: true
   validates :content, presence: true
 
-  enum status: [ 'Personal', 'Share' ]
+  enum status: ['Personal', 'Share']
 
   def belongs_to?(user)
     return false unless user.present?
