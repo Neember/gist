@@ -53,7 +53,6 @@ class SnippetsController < ApplicationController
     end
 
     flash[:notice] = "Snippet deleted successfully." if @snippet.destroy
-
     redirect_to snippets_url
   end
 
