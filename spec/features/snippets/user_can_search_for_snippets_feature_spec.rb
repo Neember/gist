@@ -11,6 +11,8 @@ describe 'User can search for snippet feature' do
     fill_in 'q', with: 'rspec'
     click_on 'Search'
 
+    expect(find_field('q').value).to eq 'rspec'
+
     expect(page).to have_content snippet.title
     expect(page).not_to have_content 'Capybara'
   end

@@ -59,6 +59,7 @@ class SnippetsController < ApplicationController
 
   def search
     @snippets = Snippet.where("title ILIKE ?", "%#{keyword}%")
+    @keyword = keyword
     render :index
   end
 
@@ -79,6 +80,6 @@ class SnippetsController < ApplicationController
   end
 
   def keyword
-    params.fetch(:q)
+    params.fetch(:q, '')
   end
 end

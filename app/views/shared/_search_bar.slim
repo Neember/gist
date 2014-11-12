@@ -1,4 +1,4 @@
 = form_tag search_snippets_path, method: :get do
   = label_tag 'Keyword'
-  = text_field_tag 'q', id: 'keyword'
+  = text_field_tag 'q', @keyword
   = submit_tag 'Search'
