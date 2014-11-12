@@ -178,6 +178,7 @@ describe SnippetsController do
     
     context 'Snippet belong to user' do
       let!(:user) { snippet.user }
+
       it 'deletes a snippet' do
         expect{do_request}.to change(Snippet, :count).by(-1)
         expect(response).to redirect_to snippets_url 
@@ -186,11 +187,31 @@ describe SnippetsController do
 
     context 'Snippet does not belong to user' do
       let!(:user) { create(:user) }
+
       it 'redirect to snippet listing' do
         do_request
         expect(response).to redirect_to snippets_url 
       end
     end
-    
+  end
+
+  describe 'GET #search' do
+    let!(:snippet) { create :snippet, title: 'RSpec for the win' }
+
+    before { create_list(:snippet, 3) }
+
+    def do_request 
+       get :search, q: 'rspec'
+    end
+
+    it 'return the search result' do
+      do_request
+      expect(response).to render_template :index
+      expect(assigns(:snippets).size).to eq 1
+      expect(assigns(:snippets)).to include snippet
+    end
   end
 end
+
+
+

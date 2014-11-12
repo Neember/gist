@@ -57,6 +57,11 @@ class SnippetsController < ApplicationController
     redirect_to snippets_url
   end
 
+  def search
+    @snippets = Snippet.where("title ILIKE ?", "%#{keyword}%")
+    render :index
+  end
+
   private
 
   def create_params
@@ -71,5 +76,9 @@ class SnippetsController < ApplicationController
 
   def snippet_id
     params.require(:id)
+  end
+
+  def keyword
+    params.fetch(:q)
   end
 end
