@@ -62,16 +62,38 @@ class SnippetsController < ApplicationController
     render :index
   end
 
+  def share_form
+    @snippet = Snippet.find(snippet_id)
+  end
+
+  def share
+    @snippet = Snippet.find snippet_id
+
+    SnippetNotifier.snippet_sharing(
+      sharer: current_user, 
+      share_email: share_email,
+      snippet: @snippet
+    ).deliver
+    
+    redirect_to snippet_url(@snippet)
+  end
+
   private
 
   def create_params
-    data = params.require(:snippet).permit(:title, :content, :status, tag_ids: [])
-    data[:user] = current_user
-    data
+    snippet_params.merge(user: current_user)
   end
 
   def update_params
     create_params
+  end
+
+  def snippet_params
+    params.require(:snippet).permit(:title, :content, :status, :email, tag_ids: [])
+  end
+
+  def share_email
+    snippet_params.fetch(:email)
   end
 
   def snippet_id

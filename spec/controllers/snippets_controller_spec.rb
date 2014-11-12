@@ -211,7 +211,37 @@ describe SnippetsController do
       expect(assigns(:snippets)).to include snippet
     end
   end
+
+  describe 'GET #share_form' do
+    let(:snippet) { create :snippet }
+    let(:user) { create :user }
+
+    def do_request
+      get :share_form, id: snippet.id
+    end
+
+    it 'renders the share form template' do
+      sign_in user
+      do_request
+      expect(assigns(:snippet)).to eq snippet
+      expect(response).to render_template :share_form
+    end
+  end
+
+  describe 'POST #share' do
+    let(:snippet) { create :snippet }
+    let(:email) { 'jack@example.com' }
+    let(:user) { create :user }
+
+    def do_request
+      post :share, id: snippet.id, snippet: {email: email}
+    end
+
+    it 'shares the snippet to email' do
+      sign_in user
+      expect { do_request }.to change(ActionMailer::Base.deliveries, :size).by 1
+    end
+
+
+  end
 end
-
-
-

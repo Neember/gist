@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :snippets do
     get :search, on: :collection
+    get :share_form, on: :member
+    post :share, on: :member
   end
 
   devise_scope :user do
