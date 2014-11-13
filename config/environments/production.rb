@@ -71,19 +71,20 @@ Rails.application.configure do
 	# config.autoflush_log = false
 
 	# Use default logging formatter so that PID and timestamp are not suppressed.
-	config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = ::Logger::Formatter.new
 
-	# Do not dump schema after migrations.
-	config.active_record.dump_schema_after_migration = false
-	# for devise
-	config.action_mailer.default_url_options = { :host => ENV['DOMAIN_NAME'] }
-	config.action_mailer.delivery_method = :smtp
-	config.action_mailer.smtp_settings = {
-		address:              "smtp.gmail.com",
-		authentication:       "plain",
-		user_name:            "neember.gist",
-		password:             "123456a1@",
-		port:                 587,
-		enable_starttls_auto: true
-	}
+  # for devise
+  config.action_mailer.default_url_options = { :host => ENV['DOMAIN_NAME'] }
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.gmail.com",
+    domain:               "gmail.com",
+    authentication:       "plain",
+    user_name:            "neember.gist",
+    password:             "123456a1@",
+    port:                 587,
+    enable_starttls_auto: true
+  }
 end
