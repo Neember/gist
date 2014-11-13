@@ -50,4 +50,24 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include Warden::Test::Helpers
   Warden.test_mode!
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
+    {
+      'provider' => 'github',
+      'uid'      => '9523491',
+      'info' => {
+        'email' => 'username@example.com',
+        'image' => 'https://avatars.githubusercontent.com/u/9523491?v=3',
+        'name'  => nil,
+        'nickname'    => 'Johnytran',
+        'created_at'  => '2014-11-03T02:42:47Z'
+      },
+      'extra' => {
+        'raw_info' => {
+          'name' => 'Johnytran'
+        }
+      }
+    }
+  )
 end
