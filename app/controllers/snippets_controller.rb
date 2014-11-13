@@ -68,6 +68,12 @@ class SnippetsController < ApplicationController
 
   def share
     @snippet = Snippet.find snippet_id
+
+    SnippetNotifier.snippet_sharing(
+      sharer: current_user, 
+      share_email: share_email,
+      snippet: @snippet
+    ).deliver
     
     redirect_to snippet_url(@snippet), notice: "Snippet was shared successfully to #{share_email}"
   end
