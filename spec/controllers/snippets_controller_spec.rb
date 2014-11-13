@@ -19,16 +19,18 @@ describe SnippetsController do
   describe 'POST #create' do
     let!(:snippet)  { build(:snippet) }
     let!(:user)     { create(:user) }
+    let!(:tags)     { create_list(:tag, 2) }
 
     before { sign_in user }
 
     def do_request
-      post :create, snippet: snippet.attributes
+      post :create, snippet: snippet.attributes.merge(tag_ids: [tags[0].id])
     end
 
     context 'success' do
       it 'creates a snippet' do
         expect{do_request}.to change(Snippet, :count).by(1)
+        expect{do_request}.to change(Tagable, :count).by(1)
         expect(response).to redirect_to snippets_url
       end
     end
