@@ -78,12 +78,9 @@ Rails.application.configure do
 
 	# for devise
 	config.action_mailer.default_url_options = { :host => ENV['DOMAIN_NAME'] }
-
 	config.action_mailer.delivery_method = :smtp
-
 	config.action_mailer.smtp_settings = {
 		address:              "smtp.gmail.com",
-		domain:               "gmail.com",
 		authentication:       "plain",
 		user_name:            "neember.gist",
 		password:             "123456a1@",
