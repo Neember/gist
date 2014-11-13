@@ -19,18 +19,22 @@ describe SnippetsController do
   describe 'POST #create' do
     let!(:snippet)  { build(:snippet) }
     let!(:user)     { create(:user) }
-    let!(:tags)     { create_list(:tag, 2) }
+    let!(:selected_tags)  { create_list(:tag, 2) }
+    let!(:other_tags)     { create_list(:tag, 2) }
 
     before { sign_in user }
 
     def do_request
-      post :create, snippet: snippet.attributes.merge(tag_ids: [tags[0].id])
+      post :create, snippet: snippet.attributes.merge(tag_ids: selected_tags.map(&:id))
     end
 
     context 'success' do
       it 'creates a snippet' do
-        expect{do_request}.to change(Snippet, :count).by(1)
-        expect{do_request}.to change(Tagable, :count).by(1)
+        expect{do_request}.to change(Snippet, :count).by(1) and 
+                              change(Tagable, :count).by(2)
+
+        expect(assigns(:snippet).tags).to match selected_tags
+        expect(assigns(:snippet).tags).not_to match other_tags
         expect(response).to redirect_to snippets_url
       end
     end
@@ -75,8 +79,10 @@ describe SnippetsController do
   end
 
   describe 'PUT #update' do
-    let!(:snippet)      { create(:snippet) }
-    let(:update_params) { attributes_for(:snippet, title: new_title) }
+    let!(:snippet)          { create(:snippet) }
+    let!(:selected_tags)    { create_list(:tag, 2) }
+    let!(:other_tags)       { create_list(:tag, 2) }
+    let(:update_params) { attributes_for(:snippet, title: new_title).merge(tag_ids: selected_tags.map(&:id)) }
 
     before { sign_in user } 
 
@@ -93,6 +99,8 @@ describe SnippetsController do
           do_request
           snippet.reload
           expect(snippet.title).to eq new_title
+          expect(snippet.tags).to match selected_tags
+          expect(snippet.tags).not_to match other_tags
           expect(response).to redirect_to snippet_url(snippet)
         end
       end
