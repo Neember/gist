@@ -146,25 +146,6 @@ describe SnippetsController do
     def do_request
       get :index
     end
-
-    context 'when user has logged in' do
-      let(:user) { create :user }
-      
-      before do 
-        create_list(:snippet, 2)
-        create_list(:snippet, 2, user: user)
-      end
-
-      it 'show gist list of user' do
-        sign_in user
-        do_request
-
-        expect(response).to render_template :index
-        expect(assigns(:snippets).size).to eq user.snippets.size
-      end
-    end
-
-    context 'public user' do
       before do 
         create_list(:snippet, 2)
       end
@@ -174,7 +155,6 @@ describe SnippetsController do
         expect(assigns(:snippets).size).to eq 2
         expect(response).to render_template :index
       end  
-    end
   end
 
   describe 'DELETE #destroy' do

@@ -3,6 +3,9 @@ class SnippetsController < ApplicationController
 
   def index  
     @snippets = Snippet.all unless current_user
+  end
+
+  def my_gists  
     @snippets = Snippet.where(user: current_user) if current_user
   end
 

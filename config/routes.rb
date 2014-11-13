@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :snippets do
     get :search, on: :collection
     get :share, to: :share_form, on: :member
+    get :my_gists, on: :collection
     post :share, on: :member
   end
 
