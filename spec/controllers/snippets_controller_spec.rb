@@ -183,6 +183,7 @@ describe SnippetsController do
     end
 
     let!(:snippet) { create(:snippet) }
+    let!(:tagables) { create_list(:tagable, 2, snippet: snippet) }
 
     before { sign_in user } 
     
@@ -190,7 +191,8 @@ describe SnippetsController do
       let!(:user) { snippet.user }
 
       it 'deletes a snippet' do
-        expect{do_request}.to change(Snippet, :count).by(-1)
+        expect{do_request}.to change(Snippet, :count).by(-1) and
+                              change(Tagable, :count).by(-2)
         expect(response).to redirect_to snippets_url 
       end
     end
