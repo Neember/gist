@@ -4,11 +4,18 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   resources :snippets do
-    get :search, on: :collection
-    get :share, to: :share_form, on: :member
-    get :my_gists, on: :collection
-    post :share, on: :member
+    member do 
+      get :share, to: :share_form
+      post :share
+    end
+
+    collection do 
+      get :search
+      get :my_gists
+    end
   end
+
+  get 'github_apis/gists' => 'github_apis#gists', :as => 'github_apis_gists'
 
   devise_scope :user do
     devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', sessions: "sessions" }

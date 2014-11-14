@@ -1,0 +1,16 @@
+#github-apis-gists-container
+  h2 Gists on Github
+
+  table.table.table-striped
+    thead
+      tr
+        th Title
+        th Owner
+    tbody
+      - @gists.each do |gist|
+        tr
+          td
+            - gist['files'].each do |file| 
+              = file[1]['filename']
+              br
+          td = gist['owner']['login']
