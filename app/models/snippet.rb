@@ -3,6 +3,7 @@ class Snippet < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :snippet_files, dependent: :destroy
   has_many :tagables, dependent: :destroy
   has_many :tags, through: :tagables, :source => :tag
 
