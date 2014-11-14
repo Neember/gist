@@ -1,4 +1,4 @@
-require 'rails_helper'
+        require 'rails_helper'
 
 describe 'Show My Gists listing' do
   let!(:setup_rails)    { create(:snippet) }

@@ -9,11 +9,9 @@ describe 'Show snippet listing' do
     
     expect(page).not_to have_link('Edit',   { href: edit_snippet_path(setup_rails) })
     expect(page).not_to have_link('Delete',   { href: snippet_path(setup_rails) })
-    expect(page).not_to have_content('Gist Management')
 
     login_as(setup_rails.user, :scope => :user)
     visit snippets_url
-    expect(page).to have_content('Gist Management')
     expect(page).to have_link('My Gists',  { href: my_gists_snippets_path })
     expect(page).to have_link('Create a gist', { href: new_snippet_path })
     expect(page).to have_content setup_rails.title
