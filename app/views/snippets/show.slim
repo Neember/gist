@@ -1,7 +1,5 @@
 #snippets-show-container
   h1 = @snippet.title
-  .content
-    = markdown(@snippet.content) 
 
   - if @snippet.belongs_to?(current_user)
     .btn-group
