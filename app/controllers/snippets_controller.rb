@@ -92,7 +92,7 @@ class SnippetsController < ApplicationController
   end
 
   def snippet_params
-    params.require(:snippet).permit(:title, :content, :status, :email, tag_ids: [])
+    params.require(:snippet).permit(:title, :status, :email, tag_ids: [])
   end
 
   def share_email
