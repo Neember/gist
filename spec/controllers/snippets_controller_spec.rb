@@ -157,6 +157,26 @@ describe SnippetsController do
       end  
   end
 
+  describe 'GET #my_gists' do
+    def do_request
+      get :my_gists
+    end
+    let(:user) { create(:user) }
+    
+    context 'logined user' do
+      before do 
+        sign_in user
+        create_list(:snippet, 2, user: user)
+      end
+
+      it 'assigns an array of snippets and renders :my_gists view' do
+        do_request 
+        expect(assigns(:snippets).size).to eq 2
+        expect(response).to render_template :my_gists
+      end  
+    end
+  end
+
   describe 'DELETE #destroy' do
     def do_request 
       delete :destroy, id: snippet.id

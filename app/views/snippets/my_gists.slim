@@ -1,0 +1,24 @@
+#snippets-index-container
+  h2 My gists
+
+  table.table.table-striped
+    thead
+      tr
+        th Title
+        th Date
+        th 
+        th
+        th
+    tbody
+      - @snippets.each do |snippet|
+        tr
+          td = link_to snippet.title, snippet_path(snippet)
+          td= snippet.created_at.strftime("%A, %d/%m/%Y")
+          td
+            = link_to 'Detail', snippet_path(snippet), class: 'btn btn-default'
+          td
+            - if snippet.belongs_to?(current_user)
+              = link_to 'Edit', edit_snippet_path(snippet), class: 'btn btn-default'
+          td
+            - if snippet.belongs_to?(current_user)
+              = link_to 'Delete', snippet_path(snippet), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }

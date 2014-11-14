@@ -2,7 +2,7 @@ class SnippetsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index  
-    @snippets = Snippet.all unless current_user
+    @snippets = Snippet.all
   end
 
   def my_gists  
