@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe User do 
+  describe 'associations' do 
+    it { is_expected.to have_many :snippets }
+  end
+
   describe '.find_for_oauth' do 
     let!(:user) { create(:user) }
     let!(:auth) {
@@ -25,9 +29,5 @@ describe User do
     it 'returns a user' do
       expect(User.find_for_oauth(auth).email).to eq user.email
     end
-  end
-
-  describe 'associations' do 
-    it { is_expected.to have_many :snippets }
   end
 end
