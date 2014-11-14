@@ -6,7 +6,11 @@ class SnippetPuller
   end
 
   def user_data
-    result = get_data("https://api.github.com/users/#{user.username}")
+    get_data("https://api.github.com/users/#{user.username}")
+  end
+
+  def gists
+    get_data("https://api.github.com/users/#{user.username}/gists")
   end
 
   private
