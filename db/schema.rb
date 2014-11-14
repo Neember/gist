@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111021828) do
+ActiveRecord::Schema.define(version: 20141114084233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,13 +44,25 @@ ActiveRecord::Schema.define(version: 20141111021828) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "snippet_files", force: true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.string   "type"
+    t.string   "language"
+    t.integer  "snippet_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "snippet_files", ["snippet_id"], name: "index_snippet_files_on_snippet_id", using: :btree
+
   create_table "snippets", force: true do |t|
     t.string   "title"
-    t.text     "content"
     t.integer  "status",     default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "code"
   end
 
   add_index "snippets", ["user_id"], name: "index_snippets_on_user_id", using: :btree

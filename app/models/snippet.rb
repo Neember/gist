@@ -7,7 +7,6 @@ class Snippet < ActiveRecord::Base
   has_many :tags, through: :tagables, :source => :tag
 
   validates :title,   presence: true
-  validates :content, presence: true
 
   enum status: ['Personal', 'Share']
 
