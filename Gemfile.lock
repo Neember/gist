@@ -245,6 +245,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_girl_rails
+  faraday
   jbuilder (~> 2.0)
   jquery-rails
   omniauth

@@ -35,6 +35,7 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'redcarpet'
 gem 'albino'
+gem 'faraday'
 
 group :development, :test do
   gem 'dotenv-rails'
