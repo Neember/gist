@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       get :search
       get :my_gists
     end
+
+    resources :snippet_files, only: [:new], controller: "snippets/snippet_files"
   end
 
   get 'github_apis/gists' => 'github_apis#gists', :as => 'github_apis_gists'
