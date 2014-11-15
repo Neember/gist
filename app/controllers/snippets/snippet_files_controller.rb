@@ -6,6 +6,9 @@ class Snippets::SnippetFilesController < ApplicationController
     @snippet_file = @snippet.snippet_files.new
   end
 
+  def create
+    
+  end
   private 
   
   def snippet_id
