@@ -1,4 +1,5 @@
 class Snippet < ActiveRecord::Base
+  include RailsAdmin::Snippet
   attr_accessor :email
 
   belongs_to :user
@@ -8,6 +9,8 @@ class Snippet < ActiveRecord::Base
   has_many :tags, through: :tagables, :source => :tag
 
   validates :title,   presence: true
+
+  accepts_nested_attributes_for :snippet_files
 
   enum status: ['Personal', 'Share']
 
