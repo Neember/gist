@@ -1,8 +1,16 @@
 #snippets-show-container
   h1 = @snippet.title
-
+  - if @snippet_files
+    table.table.table-striped
+      thead
+        tr
+          th File name
+      - @snippet_files.each do |snippet_file|
+        tr
+          td = snippet_file.name
   - if @snippet.belongs_to?(current_user)
     .btn-group
       = link_to 'Share this gist', share_snippet_path(@snippet), class: 'btn btn-success'
+      = link_to 'Add more file' , new_snippet_snippet_file_path(@snippet), class: "btn btn-default"
       = link_to 'Edit', edit_snippet_path(@snippet), class: 'btn btn-default'
       = link_to 'Delete', snippet_path(@snippet), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
