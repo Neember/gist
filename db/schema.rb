@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114084233) do
+ActiveRecord::Schema.define(version: 20141116030132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20141114084233) do
   create_table "snippet_files", force: true do |t|
     t.string   "name"
     t.text     "content"
-    t.string   "type"
     t.string   "language"
     t.integer  "snippet_id"
     t.datetime "created_at"
