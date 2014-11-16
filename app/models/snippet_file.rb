@@ -3,5 +3,4 @@ class SnippetFile < ActiveRecord::Base
 
   validates :name,       presence: true
   validates :content,    presence: true
-  validates :snippet_id, presence: true
 end
