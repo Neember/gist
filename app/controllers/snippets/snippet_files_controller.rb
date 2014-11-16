@@ -8,7 +8,7 @@ class Snippets::SnippetFilesController < ApplicationController
 
   def create
     @snippet_file = @snippet.snippet_files.new( snippet_file_params )
-    p @snippet_file
+
     if @snippet_file.save
       redirect_to my_gists_snippets_path
     else
@@ -27,6 +27,6 @@ class Snippets::SnippetFilesController < ApplicationController
   end
 
   def snippet_file_params
-    params.require(:snippet_file).permit(:name, :content)
+    params.require(:snippet_files).permit(:name, :content)
   end
 end
