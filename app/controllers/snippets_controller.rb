@@ -16,13 +16,14 @@ class SnippetsController < ApplicationController
 
   def new
     @snippet = Snippet.new
+    @snippet.snippet_files.build
   end
 
   def create
     @snippet = Snippet.new(create_params)
 
     if @snippet.save
-      redirect_to snippets_url, notice: 'Snippet created successfully.'
+      redirect_to snippet_url(@snippet), notice: 'Snippet created successfully.'
     else
       render :new
     end
@@ -84,19 +85,19 @@ class SnippetsController < ApplicationController
   private
 
   def create_params
-    snippet_params.merge(user: current_user)
+    data = params.require(:snippet).permit(:title, :status, :email, 
+                                    tag_ids: [], 
+                                    snippet_files_attributes: [:name, :content])
+    data[:user] = current_user
+    data
   end
 
   def update_params
     create_params
   end
 
-  def snippet_params
-    params.require(:snippet).permit(:title, :status, :email, tag_ids: [])
-  end
-
   def share_email
-    snippet_params.fetch(:email)
+    params.require(:snippet).permit(:email)[:email]
   end
 
   def snippet_id

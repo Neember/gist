@@ -32,10 +32,10 @@ describe SnippetsController do
       it 'creates a snippet' do
         expect{do_request}.to change(Snippet, :count).by(1) and 
                               change(Tagable, :count).by(2)
-
+                              
         expect(assigns(:snippet).tags).to match selected_tags
         expect(assigns(:snippet).tags).not_to match other_tags
-        expect(response).to redirect_to snippets_url
+        expect(response).to redirect_to snippet_url(assigns(:snippet))
       end
     end
 
