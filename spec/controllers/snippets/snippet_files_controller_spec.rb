@@ -17,22 +17,21 @@ describe Snippets::SnippetFilesController do
   end
 
   describe 'POST#create' do 
-    let(:snippet) { build(:snippet) }
     let(:snippet_file) { build(:snippet_file) }
-    let(:user) { snippet.user }
+    let(:user) { snippet_file.snippet.user }
 
-    before { sign_in user }
+    before { sign_in user , snippet_file: attributes_for(:snippet_file)}
+
     def do_request
-      post :create, snippet_file: snippet_file.attributes, snippet_id: snippet.id
+      post :create, snippet_file: snippet_file.attributes, snippet_id: snippet_file.snippet.id
     end
     context 'success' do
        it 'create a snippet_file' do
-        expect(do_request).to change(Snippet_file :count).by(1)
-        expect(assign(:snippet_file)).to match snippet_file
+        expect{do_request}.to change(SnippetFile, :count).by 1
         expect(response).to redirect_to my_gists_snippets_path
       end
     end
-   context 'fails' do
+    context 'fails' do
      it 'redirect to :new view' do
        do_request
        snippet_file.name = nil
