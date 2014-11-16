@@ -1,6 +1,11 @@
 .snippets-form-container
-  = simple_form_for @snippet do |f|
-    = f.input :title
-    = f.input :status, :as => :select, :collection => Snippet.statuses.keys.to_a
-    = f.association :tags,   as: :check_boxes
-    = f.button :submit
+  = simple_form_for @snippet do |snippet|
+    = snippet.input :title
+    = snippet.input :status, :as => :select, :collection => Snippet.statuses.keys.to_a
+    = snippet.association :tags,   as: :check_boxes
+    
+    = snippet.simple_fields_for :snippet_files do |snippet_file|
+      = snippet_file.input :name
+      = snippet_file.input :content
+
+    = snippet.button :submit
