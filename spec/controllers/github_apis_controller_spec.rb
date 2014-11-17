@@ -14,7 +14,7 @@ describe GithubApisController do
     it "assigns an array of user's gists from github" do 
       do_request
       gists = assigns(:gists)
-      expect(gists.size).to eq 1
+      expect(gists.size).to eq 2
       expect(gists.first['owner']['login']).to match user.username
       expect(response).to render_template :gists
     end
