@@ -1,4 +1,7 @@
-= form_tag search_snippets_path, method: :get do
-  = label_tag 'Keyword'
-  = text_field_tag 'q', @keyword
-  = submit_tag 'Search'
+= form_tag search_snippets_path, method: :get, :class => 'form-inline' do 
+  .form-group
+    p.form-control-static 
+      | Keyword
+  .form-group
+    = text_field_tag 'q', @keyword, class: "form-control"
+  = submit_tag 'Search', class: 'btn btn-default'
