@@ -6,16 +6,25 @@ class SnippetPuller
   end
 
   def user_data
-    get_data("https://api.github.com/users/#{user.username}")
+    SnippetPuller.get_data("https://api.github.com/users/#{user.username}")
   end
 
   def gists
-    get_data("https://api.github.com/users/#{user.username}/gists")
+    SnippetPuller.get_data("https://api.github.com/users/#{user.username}/gists")
+  end
+
+  def self.gist(code)
+    get_data("https://api.github.com/gists/#{code}")
+  end
+
+  def pull(code)
+    gist = SnippetPuller.gist(code)
+
   end
 
   private
 
-  def get_data(link)
+  def self.get_data(link)
     response = Faraday.get link
     result = JSON.parse(response.body)
   end
