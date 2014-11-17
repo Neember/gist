@@ -7,7 +7,6 @@ describe Snippet do
 
   describe 'associations' do 
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to have_many(:snippet_files) }
     it { is_expected.to have_many(:tagables) }
     it { is_expected.to have_many(:tags).through(:tagables) }
   end
