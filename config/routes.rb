@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'github_apis/gists' => 'github_apis#gists', :as => 'github_apis_gists'
-
   devise_scope :user do
     devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', sessions: "sessions" }
   end
