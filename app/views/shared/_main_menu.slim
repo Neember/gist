@@ -7,7 +7,6 @@
         - if user_signed_in?
             li = link_to "My Gists", my_gists_snippets_path
             li = link_to "Create a gist", new_snippet_path
-            li = link_to "Gists on Github", github_apis_gists_path
       ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
               li: a Wellcome #{current_user.username} 
