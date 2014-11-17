@@ -7,6 +7,7 @@ describe 'Update a snippet' do
     login_as(snippet.user, :scope => :user)
     visit edit_snippet_url(snippet) 
     fill_in 'Title', with: 'New title'
+    fill_in 'Content', with: 'Lorem Ipsum'
     click_on 'Update Snippet'
     expect(page).to have_content 'Snippet updated successfully.'
   end

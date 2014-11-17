@@ -1,7 +1,4 @@
-= form_tag search_snippets_path, method: :get, :class => 'form-inline' do 
+= form_tag search_snippets_path, method: :get, class: 'navbar-form navbar-left' do 
   .form-group
-    p.form-control-static 
-      | Keyword
-  .form-group
-    = text_field_tag 'q', @keyword, class: "form-control"
+    = text_field_tag 'q', @keyword, class: "form-control", placeholder: 'Enter your keyword'
   = submit_tag 'Search', class: 'btn btn-default'

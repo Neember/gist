@@ -5,10 +5,9 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    .container
-      = render 'shared/notice'
+    .container-fluid
+      .row
+        = render 'shared/notice'
+        = render 'shared/main_menu'
 
-      = render 'shared/main_menu'
-      = render 'shared/search_bar'
-      
-      = yield
+        .container = yield

@@ -36,6 +36,7 @@ gem 'omniauth-github'
 gem 'redcarpet'
 gem 'albino'
 gem 'faraday'
+gem 'font-awesome-sass', '~> 4.2.0'
 
 group :development, :test do
   gem 'dotenv-rails'
