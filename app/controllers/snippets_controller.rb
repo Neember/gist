@@ -22,7 +22,7 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.new(create_params)
 
     if @snippet.save
-      redirect_to snippet_url(@snippet), notice: 'Snippet created successfully.'
+      redirect_to snippets_url, notice: 'Snippet created successfully.'
     else
       render :new
     end
