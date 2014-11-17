@@ -11,7 +11,6 @@ class SnippetsController < ApplicationController
 
   def show
     @snippet = Snippet.find(snippet_id)
-    @snippet_files = @snippet.snippet_files
     render :show
   end
 
