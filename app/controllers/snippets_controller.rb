@@ -16,7 +16,6 @@ class SnippetsController < ApplicationController
 
   def new
     @snippet = Snippet.new
-    @snippet.snippet_files.build
   end
 
   def create
