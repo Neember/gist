@@ -10,7 +10,7 @@ describe 'User can share a snippet feature' do
 
     click_on snippet.title
 
-    click_on 'Share this gist'
+    click_on 'Share'
 
     fill_in 'Email', with: 'john@example.com'
     click_on 'Share to this email'

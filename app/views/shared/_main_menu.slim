@@ -1,16 +1,15 @@
-.shared-main-menu-container
-  nav.navbar.navbar-default
-    .container
+nav.navbar.navbar-default.bg-success
+  .container
+    .row
       .navbar-header
         = link_to "Neember Gists", snippets_path, class: "navbar-brand"
-      
+
       = render partial: 'shared/search_bar'
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          li = link_to icon('user', current_user.username)
+          li = link_to icon('user', current_user.username), '#'
           li = link_to icon('list-alt', 'My Gists'), my_gists_snippets_path
           li = link_to icon('plus', 'Create a gist'), new_snippet_path
           li = link_to icon('sign-out', 'Sign out'), destroy_user_session_path, method: :delete
         - else
           li = link_to icon('github', 'Sign in with Github'), '/users/auth/github'
-  

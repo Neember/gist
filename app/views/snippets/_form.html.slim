@@ -4,4 +4,4 @@
     = form.input :content
     = form.input :status, as: :select, collection: Snippet.statuses.keys.to_a
     = form.association :tags,  as: :check_boxes
-    = form.submit
+    = form.submit class: 'btn btn-sm btn-default'

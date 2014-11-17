@@ -11,6 +11,7 @@ describe 'display :show view' do
     visit snippet_url(snippet)
 
     expect(page).to have_content(snippet.title)
+    expect(page).to have_content(snippet.content)
 
     expect(page).to have_link('Edit',   { href: edit_snippet_path(snippet) })
     expect(page).to have_link('Delete',   { href: snippet_path(snippet) })

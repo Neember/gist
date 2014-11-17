@@ -1,15 +1,5 @@
 .row
   h2 Public Gists
 
-  - @snippets.each do |snippet|
-    .panel.panel-default
-      .panel-header
-        h4 = link_to snippet.title, snippet_path(snippet)
-      .panel-body
-        = snippet.content
-      .panel-footer
-        = link_to 'Detail', snippet_path(snippet), class: 'btn btn-default'
-        - if snippet.belongs_to?(current_user)
-          = link_to 'Edit', edit_snippet_path(snippet), class: 'btn btn-default' 
-          = link_to 'Delete', snippet_path(snippet), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
+  = render partial: 'snippets/index', locals: {snippets: @snippets}
   
