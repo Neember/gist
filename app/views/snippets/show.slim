@@ -1,13 +1,5 @@
 #snippets-show-container
   h1 = @snippet.title
-  - if @snippet_files
-    table.table.table-striped
-      thead
-        tr
-          th File name
-      - @snippet_files.each do |snippet_file|
-        tr
-          td = snippet_file.name
   - if @snippet.belongs_to?(current_user)
     .btn-group
       = link_to 'Share this gist', share_snippet_path(@snippet), class: 'btn btn-success'
