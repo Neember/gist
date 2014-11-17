@@ -35,7 +35,7 @@ describe SnippetsController do
                               
         expect(assigns(:snippet).tags).to match selected_tags
         expect(assigns(:snippet).tags).not_to match other_tags
-        expect(response).to redirect_to snippet_url(assigns(:snippet))
+        expect(response).to redirect_to snippets_url
       end
     end
 
