@@ -3,9 +3,4 @@
     = snippet.input :title
     = snippet.input :status, :as => :select, :collection => Snippet.statuses.keys.to_a
     = snippet.association :tags,   as: :check_boxes
-    
-    = snippet.simple_fields_for :snippet_files do |snippet_file|
-      = snippet_file.input :name
-      = snippet_file.input :content
-
     = snippet.button :submit
