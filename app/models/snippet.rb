@@ -9,8 +9,6 @@ class Snippet < ActiveRecord::Base
 
   validates :title,   presence: true
 
-  accepts_nested_attributes_for :snippet_files
-
   enum status: ['Personal', 'Share']
 
   def belongs_to?(user)
