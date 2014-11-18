@@ -60,7 +60,7 @@ class SnippetsController < ApplicationController
   end
 
   def search
-    @snippets = Snippet.where("title ILIKE ?", "%#{keyword}%")
+    @snippets = Snippet.where("title ILIKE ? OR content ILIKE ?", "%#{keyword}%", "%#{keyword}%")
     @keyword = keyword
     render :index
   end

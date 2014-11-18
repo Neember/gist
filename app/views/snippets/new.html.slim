@@ -1,7 +1,1 @@
-= simple_form_for @snippet, :html => {:name => 'snippet_form'} do |form|
-  = form.submit 'Create Snippet', class: 'btn btn-default' 
-  h1 Create a snippet
-  = form.input :title
-  = form.input :content
-  = form.input :status, as: :select, collection: Snippet.statuses.keys.to_a
-  = form.association :tags,  as: :check_boxes
+= render partial: 'snippets/form', locals: {form_title: 'Add a new snippet'}
