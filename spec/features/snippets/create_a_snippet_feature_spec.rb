@@ -5,7 +5,7 @@ describe 'Create a snippet' do
 
   it 'allows user to create a snippet' do 
     login_as(user, :scope => :user)
-    visit new_snippet_url
+    visit new_snippet_path
     
     fill_in 'Title', with: 'Snippet 1'
     fill_in 'Content', with: 'Test Lorem Ipsum'

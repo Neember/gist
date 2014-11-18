@@ -1,3 +1,6 @@
-#snippets-edit-container
-  h3 Update Snippet #{@snippet.title}
-  = render 'snippets/form'
+= simple_form_for @snippet, :html => {:name => 'snippet_form'} do |form|
+  .form-group = form.submit 'Update Snippet', class: 'btn btn-default'
+  = form.input :title
+  = form.input :content
+  = form.input :status, as: :select, collection: Snippet.statuses.keys.to_a
+  = form.association :tags,  as: :check_boxes

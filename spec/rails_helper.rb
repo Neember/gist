@@ -7,6 +7,8 @@ require 'capybara/rspec'
 require 'factory_girl'
 require 'webmock/rspec'
 
+require "capybara/dsl"
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -48,8 +50,8 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include FactoryGirl::Syntax::Methods
   config.include ActionDispatch::TestProcess
-  config.include Capybara::DSL
   config.include Warden::Test::Helpers
+  config.include Capybara::DSL, :type => :feature
   Warden.test_mode!
   OmniAuth.config.test_mode = true
 
@@ -71,4 +73,5 @@ RSpec.configure do |config|
       }
     }
   )
+
 end
