@@ -34,9 +34,11 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'redcarpet'
+gem 'pygments.rb', '~> 0.6.0'
 gem 'albino'
 gem 'faraday'
 gem 'font-awesome-sass', '~> 4.2.0'
+gem 'ace-rails-ap'
 
 group :development, :test do
   gem 'dotenv-rails'

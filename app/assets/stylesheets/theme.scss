@@ -1,8 +1,4 @@
-input[type=checkbox].form-control {
-  height: auto;
-  width: auto;
-  border: none;
-}
-.form-inline .form-group{
-  margin-right: 5px;
+textarea#snippet_content {
+  font-family: monospace;
+  height: 200px;
 }
