@@ -39,6 +39,7 @@ gem 'albino'
 gem 'faraday'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'ace-rails-ap'
+gem 'letter_opener'
 
 group :development, :test do
   gem 'dotenv-rails'

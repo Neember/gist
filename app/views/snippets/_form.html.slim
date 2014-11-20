@@ -3,5 +3,4 @@
     .row = form.submit class: 'btn btn-success'
   h2 = form_title
   = form.input :title
-  = form.input :content
-  = form.association :tags,  as: :check_boxes
+  = form.input :content, hint: 'Markdown syntax is supported.'

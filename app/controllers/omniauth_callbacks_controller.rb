@@ -4,8 +4,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       def #{provider}
         @user = User.find_for_oauth(request.env["omniauth.auth"])
 
-        if @user.nil?
-          return redirect_to root_url, notice: 'Can not find the user!'
+        unless @user
+          return redirect_to root_url, alert: 'Could not sign you in because your account does not exist.'
         end
 
         sign_in_and_redirect @user, event: :authentication

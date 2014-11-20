@@ -3,10 +3,6 @@
     .panel-heading
       h3.panel-title = link_to @snippet.title, snippet_path(@snippet)
     .panel-body
-      = markdown @snippet.content
+      .markdown-body = markdown @snippet.content
     .panel-footer
-      .btn-group.btn-group-sm
-        = link_to icon('share', 'Share'), share_snippet_path(@snippet), class: 'btn'
-        - if @snippet.belongs_to?(current_user)
-          = link_to icon('edit', 'Edit'), edit_snippet_path(@snippet), class: 'btn' 
-          = link_to icon('trash', 'Delete'), snippet_path(@snippet), method: :delete, class: 'btn', data: { confirm: "Are you sure?" }
+      = render partial: 'snippets/buttons', locals: {snippet: @snippet}

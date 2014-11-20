@@ -18,6 +18,5 @@ describe 'Show snippet listing' do
     expect(page).to have_content paperclip.title
     expect(page).to have_link('Edit', href: edit_snippet_path(setup_rails))
     expect(page).to have_link('Delete', href: snippet_path(setup_rails))
-    expect(page).to have_link('Detail', href: snippet_path(setup_rails))
   end
 end

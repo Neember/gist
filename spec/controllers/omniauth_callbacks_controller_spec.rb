@@ -26,7 +26,7 @@ describe OmniauthCallbacksController do
       it 'does not sign in user and alert an error message' do 
         do_request  
         expect(response).to redirect_to root_path
-        expect(flash[:notice]).to eq 'Can not find the user!'
+        expect(flash[:alert]).not_to be_nil
       end
     end
   end
