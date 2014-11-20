@@ -11,6 +11,8 @@ class Snippet < ActiveRecord::Base
 
   enum status: ['Personal', 'Share']
 
+  scope :recent, -> { order(created_at: :desc) }
+
   def belongs_to?(user)
     return false unless user.present?
     user_id == user.id

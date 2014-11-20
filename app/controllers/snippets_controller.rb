@@ -2,11 +2,11 @@ class SnippetsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index  
-    @snippets = Snippet.all
+    @snippets = Snippet.all.recent
   end
 
   def my_gists  
-    @snippets = Snippet.where(user: current_user) if current_user
+    @snippets = Snippet.where(user: current_user).recent if current_user
   end
 
   def show
@@ -60,7 +60,7 @@ class SnippetsController < ApplicationController
   end
 
   def search
-    @snippets = Snippet.where("title ILIKE ? OR content ILIKE ?", "%#{keyword}%", "%#{keyword}%")
+    @snippets = Snippet.where("title ILIKE ? OR content ILIKE ?", "%#{keyword}%", "%#{keyword}%").recent
     @keyword = keyword
     render :index
   end
@@ -84,11 +84,9 @@ class SnippetsController < ApplicationController
   private
 
   def create_params
-    data = params.require(:snippet).permit(
+    params.require(:snippet).permit(
       :title, :status, :email, :content, tag_ids: []
-    )
-    data[:user] = current_user
-    data
+    ).merge(user: current_user)
   end
 
   def update_params
