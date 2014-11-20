@@ -13,7 +13,7 @@ describe 'User can share a snippet feature' do
     click_on 'Share'
 
     fill_in 'Email', with: 'john@example.com'
-    click_on 'Share to this email'
+    click_on 'Share this gist'
 
     expect(page).to have_content 'Snippet was shared successfully to john@example.com'
   end

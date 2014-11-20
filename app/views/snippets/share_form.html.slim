@@ -1,4 +1,4 @@
 .snippets-share-form-container
   = simple_form_for [:share, @snippet], method: :post do |f|
     = f.input :email, hint: 'Emails are separated by comma e.g. john@example.com, jack@example.com'
-    = f.submit 'Share to this email', class: 'btn btn-default'
+    = f.submit 'Share this gist', class: 'btn btn-info'
