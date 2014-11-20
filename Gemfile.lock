@@ -1,7 +1,6 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    ace-rails-ap (3.0.1)
     actionmailer (4.1.7)
       actionpack (= 4.1.7)
       actionview (= 4.1.7)
@@ -253,7 +252,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ace-rails-ap
   albino
   better_errors
   binding_of_caller

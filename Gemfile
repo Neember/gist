@@ -38,8 +38,6 @@ gem 'pygments.rb', '~> 0.6.0'
 gem 'albino'
 gem 'faraday'
 gem 'font-awesome-sass', '~> 4.2.0'
-gem 'ace-rails-ap'
-gem 'letter_opener'
 
 group :development, :test do
   gem 'dotenv-rails'
@@ -53,6 +51,7 @@ group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 group :test do
