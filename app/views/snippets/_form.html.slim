@@ -1,6 +1,6 @@
 = simple_form_for @snippet, html: {name: 'snippet_form'} do |form|
   .col-md-12.text-right
     .row = form.submit class: 'btn btn-success'
-  h2 = form_title
+  h2.page-header = form_title
   = form.input :title
   = form.input :content, hint: 'Markdown syntax is supported.'

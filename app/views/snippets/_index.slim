@@ -1,9 +1,9 @@
 - snippets.each do |snippet|
   .panel.panel-default
     .panel-heading
-      = link_to snippet.title, snippet_path(snippet)
+      .panel-title = link_to snippet.title, snippet_path(snippet), class: 'text-info'
     .panel-body
       .markdown-body = markdown snippet.content
     .panel-footer
-      label.label.label-primary = snippet.user.email
+      label.label.label-primary = snippet.user.username
       = render partial: 'snippets/buttons', locals: {snippet: snippet}
