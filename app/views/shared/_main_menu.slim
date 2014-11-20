@@ -12,4 +12,5 @@ nav.navbar.navbar-default.bg-success
           li = link_to icon('plus', 'Create a gist'), new_snippet_path
           li = link_to icon('sign-out', 'Sign out'), destroy_user_session_path, method: :delete
         - else
-          li = link_to icon('github', 'Sign in with Github'), user_omniauth_authorize_path(:github)
+          li = link_to  'Sign in', new_user_session_path
+

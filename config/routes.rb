@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   end
 
   devise_scope :user do
-    devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', sessions: "sessions" }
+    devise_for :users, controllers: {omniauth_callbacks: 'omniauth_callbacks'}
   end
 end
