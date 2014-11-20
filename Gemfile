@@ -38,6 +38,7 @@ gem 'pygments.rb', '~> 0.6.0'
 gem 'albino'
 gem 'faraday'
 gem 'font-awesome-sass', '~> 4.2.0'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem 'dotenv-rails'
