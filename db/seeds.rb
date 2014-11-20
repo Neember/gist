@@ -12,7 +12,8 @@ User.delete_all
 usernames = ['john', 'martin', 'jack', 'stevenyap', 'frank', 'khoa', 'maicon', 'seika', 'anthony']
 
 usernames.each do |username|
-  User.find_or_create! email: "#{username}@futureworkz.com", username: username, password: '123123123', password_confirmation: '123123123'
+  User.find_or_initialize_by(email: "#{username}@futureworkz.com")
+    .update(name: username.capitalize, username: username, password: '123123123', password_confirmation: '123123123')
 end
 puts "Finish seeding User"
 
