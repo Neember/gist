@@ -1,8 +1,8 @@
 .row
   h2.page-header = @snippet.title
   .panel.panel-default
-    .panel-body
-      .markdown-body = markdown @snippet.content
-    .panel-footer
+    .panel-heading
       label.label.label-primary = @snippet.user.username
       = render partial: 'snippets/buttons', locals: {snippet: @snippet}
+    .panel-body
+      .markdown-body = markdown @snippet.content
