@@ -13,6 +13,8 @@ class Snippet < ActiveRecord::Base
 
   scope :recent, -> { order(created_at: :desc) }
 
+  self.per_page = 10
+
   def belongs_to?(user)
     return false unless user.present?
     user_id == user.id

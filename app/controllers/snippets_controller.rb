@@ -2,11 +2,11 @@ class SnippetsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index  
-    @snippets = Snippet.all.recent
+    @snippets = Snippet.all.recent.paginate(page: page_param)
   end
 
   def my_gists  
-    @snippets = Snippet.where(user: current_user).recent if current_user
+    @snippets = Snippet.where(user: current_user).recent.paginate(page: page_param) if current_user
   end
 
   def show
@@ -60,7 +60,7 @@ class SnippetsController < ApplicationController
   end
 
   def search
-    @snippets = Snippet.where("title ILIKE ? OR content ILIKE ?", "%#{keyword}%", "%#{keyword}%").recent
+    @snippets = Snippet.where("title ILIKE ? OR content ILIKE ?", "%#{keyword}%", "%#{keyword}%").recent.paginate(page: page_param)
     @keyword = keyword
     render :index
   end
@@ -82,6 +82,9 @@ class SnippetsController < ApplicationController
   end
 
   private
+  def page_param
+    params.fetch :page, 1
+  end
 
   def create_params
     params.require(:snippet).permit(

@@ -2,4 +2,5 @@
   h2.page-header List of Snippets
 
   = render partial: 'snippets/index', locals: {snippets: @snippets}
+  = will_paginate @snippets, renderer: BootstrapPagination::Rails
   
