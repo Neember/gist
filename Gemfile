@@ -1,6 +1,5 @@
-ruby '2.1.4'
+ruby '2.1.5'
 source 'http://rubygems.org'
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
@@ -39,7 +38,7 @@ gem 'albino'
 gem 'faraday'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'omniauth-google-oauth2'
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
 group :development, :test do

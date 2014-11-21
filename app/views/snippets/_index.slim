@@ -5,5 +5,5 @@
     .panel-body
       .markdown-body = markdown snippet.content
     .panel-footer
-      label.label.label-primary = snippet.user.username
+      label.label.label-primary = snippet.username
       = render partial: 'snippets/buttons', locals: {snippet: snippet}

@@ -13,6 +13,8 @@ class Snippet < ActiveRecord::Base
 
   scope :recent, -> { order(created_at: :desc) }
 
+  delegate :username, to: :user, allow_nil: true
+
   self.per_page = 10
 
   def belongs_to?(user)
