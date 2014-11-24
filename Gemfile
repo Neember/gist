@@ -40,6 +40,9 @@ gem 'font-awesome-sass', '~> 4.2.0'
 gem 'omniauth-google-oauth2'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'ace-rails-ap'
+gem 'httparty'
+gem 'colorize'
 
 group :development, :test do
   gem 'dotenv-rails'
@@ -47,6 +50,7 @@ group :development, :test do
 	gem 'shoulda'
 	gem 'capybara'
 	gem 'rspec-rails', '~> 3.0.0'
+  gem 'awesome_print'
 end
 
 group :development do
@@ -76,4 +80,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
