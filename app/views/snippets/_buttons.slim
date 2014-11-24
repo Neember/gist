@@ -1,4 +1,4 @@
-.btn-group.btn-group-sm
+.btn-group.btn-group-sm.share-group
   = link_to icon('share', 'Share'), share_snippet_path(snippet), class: 'btn text-info'
   - if snippet.belongs_to?(current_user)
     = link_to icon('edit', 'Edit'), edit_snippet_path(snippet), class: 'btn text-success' 

@@ -2,6 +2,12 @@ textarea#snippet_content {
   font-family: monospace;
   height: 400px;
 }
-.checkbox .form-control{
+.checkbox .form-control {
   height:auto;
+}
+.share-group {
+  float: right;
+}
+.snippet.list-group-item:hover {
+  background-color: #eee;
 }
