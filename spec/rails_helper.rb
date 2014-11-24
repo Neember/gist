@@ -38,7 +38,7 @@ RSpec.configure do |config|
   # You can disable this behaviour by removing the line below, and instead
   # explicitly tag your specs with their type, e.g.:
   #
-  #     RSpec.describe UsersController, :type => :controller do
+  #     RSpec.describe UsersController, type: :controller do
   #       # ...
   #     end
   #
@@ -51,27 +51,42 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include ActionDispatch::TestProcess
   config.include Warden::Test::Helpers
-  config.include Capybara::DSL, :type => :feature
+  config.include Capybara::DSL, type: :feature
   Warden.test_mode!
   OmniAuth.config.test_mode = true
-
-  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
     {
-      'provider' => 'github',
-      'uid'      => '9523491',
-      'info' => {
-        'email' => 'username@example.com',
-        'image' => 'https://avatars.githubusercontent.com/u/9523491?v=3',
-        'name'  => nil,
-        'nickname'    => 'Johnytran',
-        'created_at'  => '2014-11-03T02:42:47Z'
+      provider: "google_oauth2",
+      uid: "123456789",
+      info: {
+        name: "John Tran",
+        email: "name@example.com",
+        first_name: "John",
+        last_name: "Tran",
+        image: "https://lh3.googleusercontent.com/url/photo.jpg"
       },
-      'extra' => {
-        'raw_info' => {
-          'name' => 'Johnytran'
+      credentials: {
+        token: "token",
+        refresh_token: "another_token",
+        expires_at: 1354920555,
+        expires: true
+      },
+      extra: {
+        raw_info: {
+          sub: "123456789",
+          email: "user@domain.example.com",
+          email_verified: true,
+          name: "John Doe",
+          given_name: "John",
+          family_name: "Doe",
+          profile: "https://plus.google.com/123456789",
+          picture: "https://lh3.googleusercontent.com/url/photo.jpg",
+          gender: "male",
+          birthday: "0000-06-25",
+          locale: "en",
+          hd: "company_name.com"
         }
       }
-    }
+    } 
   )
-
 end

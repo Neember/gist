@@ -12,5 +12,5 @@ nav.navbar.navbar-default.bg-success
           li = link_to icon('plus', 'Create a gist'), new_snippet_path
           li = link_to icon('sign-out', 'Sign out'), destroy_user_session_path, method: :delete
         - else
-          li = link_to  'Sign in', new_user_session_path
+          li = link_to 'Sign in with Google', user_omniauth_authorize_path(provider: :google_oauth2)
 

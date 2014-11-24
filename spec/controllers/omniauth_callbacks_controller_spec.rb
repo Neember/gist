@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 describe OmniauthCallbacksController do
-  describe 'GET #github' do
+  describe 'GET #google_oauth2' do
     let(:user) { create :user }
 
     def do_request
-      get :github
+      get :google_oauth2
     end  
 
     before do 
-      request.env["devise.mapping"] = Devise.mappings[:user]
-      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
+      request.env['devise.mapping'] = Devise.mappings[:user]
+      request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
     end
 
     context 'Success' do 
@@ -18,7 +18,7 @@ describe OmniauthCallbacksController do
         request.env["omniauth.auth"]['info']['email'] = user.email
         do_request  
         expect(response).to redirect_to root_path
-        expect(flash[:notice]).to eq 'Successfully authenticated from Github account.'
+        expect(flash[:notice]).to eq 'Successfully authenticated from Google account.'
       end
     end
 

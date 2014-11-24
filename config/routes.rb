@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_scope :user do
-    devise_for :users, controllers: {omniauth_callbacks: 'omniauth_callbacks'}
+  devise_for :users, skip: [:sessions], controllers: {omniauth_callbacks: 'omniauth_callbacks'}
+
+  as :user do
+    delete 'signout' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 end
