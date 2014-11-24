@@ -6,9 +6,6 @@ Admin.create! email: 'john@futureworkz.com', password: '123123123', password_con
 puts "Finish seeding Admin"
 
 puts 'Start seeding User'
-
-User.delete_all
-
 usernames = ['john', 'martin', 'jack', 'stevenyap', 'frank', 'khoa', 'maicon', 'seika', 'anthony']
 
 usernames.each do |username|
