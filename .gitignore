@@ -15,5 +15,8 @@
 /log/*.log
 /tmp
 /.env
-
 /.idea
+
+# Ignore vim tmp files
+*.swp
+*.swo
