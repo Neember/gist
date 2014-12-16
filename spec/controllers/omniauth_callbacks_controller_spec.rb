@@ -15,7 +15,7 @@ describe OmniauthCallbacksController do
 
     context 'Success' do 
       it 'sign in user and redirect to the home page' do
-        request.env["omniauth.auth"]['info']['email'] = user.email
+        request.env["omniauth.auth"]['info']['email'] = user.email.capitalize
         do_request  
         expect(response).to redirect_to root_path
         expect(flash[:notice]).to eq 'Successfully authenticated from Google account.'
